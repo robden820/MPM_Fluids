@@ -336,7 +336,7 @@ void PICScene::UpdateCellVelocity()
 				}
 				else
 				{
-					mSimulationData.gridVelX[cIndex] -= scale * (thisCellPressure - leftCellPressure + mSimulationData.gridDensityControl[cIndex] - mSimulationData.gridDensityControl[leftNeighbour]);
+					mSimulationData.gridVelX[cIndex] -= scale * (thisCellPressure - leftCellPressure);
 				}
 			}
 		}
@@ -355,7 +355,7 @@ void PICScene::UpdateCellVelocity()
 				}
 				else
 				{
-					mSimulationData.gridVelY[cIndex] -= scale * (thisCellPressure - lowerCellPressure + mSimulationData.gridDensityControl[cIndex] - mSimulationData.gridDensityControl[lowerNeighbour]);
+					mSimulationData.gridVelY[cIndex] -= scale * (thisCellPressure - lowerCellPressure);
 				}
 			}
 		}

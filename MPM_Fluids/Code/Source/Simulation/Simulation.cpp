@@ -60,14 +60,23 @@ void Simulation::StepPIC()
 	mSimulationScene.UpdateParticleCellMap();
 	mTimer.PrintTimerReset("Update Particle-Cell Map");
 
-	mSimulationScene.InterpolatePToG();
-	mTimer.PrintTimerReset("Interpolate particle velocities to grid");
-
 	mSimulationScene.AssignCellTypeTags();
 	mTimer.PrintTimerReset("Assign cell tags");
 
+	mSimulationScene.InterpolatePToG();
+	mTimer.PrintTimerReset("Interpolate particle velocities to grid");
+
 	mSimulationScene.CalculateCellDensityError();
 	mTimer.PrintTimerReset("Calculate cell density error");
+
+	mSimulationScene.SolveDensity();
+	mTimer.PrintTimerReset("Solve density");
+
+	mSimulationScene.BumpParticlesDensity();
+	mTimer.PrintTimerReset("Bump particles for density correction");
+
+	mSimulationScene.UpdateParticleCellMap();
+	mTimer.PrintTimerReset("Update Particle-Cell Map");
 
 	mSimulationScene.ApplyExternalForces();
 	mTimer.PrintTimerReset("Apply external forces");
@@ -78,15 +87,12 @@ void Simulation::StepPIC()
 	mSimulationScene.SolvePressure();
 	mTimer.PrintTimerReset("Pressure solve");
 
-	mSimulationScene.SolveDensity();
-	mTimer.PrintTimerReset("Density solve");
-
 	mSimulationScene.UpdateCellVelocity();
 	mTimer.PrintTimerReset("Update cell velocities");
 
 	// Extrapolate grid velocities so that all nodes have a valid, up-to-date velocity.
-	mSimulationScene.ExtrapolateVelocityFields();
-	mTimer.PrintTimerReset("Extrapolate interpolated velocity fields");
+//	mSimulationScene.ExtrapolateVelocityFields();
+//	mTimer.PrintTimerReset("Extrapolate interpolated velocity fields");
 
 	mSimulationScene.InterpolateGToP();
 	mTimer.PrintTimerReset("Interpolate grid velocities to particles");

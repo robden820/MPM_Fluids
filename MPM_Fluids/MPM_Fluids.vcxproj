@@ -17,7 +17,6 @@
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -53,27 +52,24 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
-
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Label="Shared" >
+  <ImportGroup Label="Shared">
   </ImportGroup>
-    <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    </ImportGroup>
-    <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    </ImportGroup>
-    <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    </ImportGroup>
-    <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    </ImportGroup>
-
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -108,10 +104,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>Code\ThirdParty;Code\ThirdParty\glfw\include;Code\ThirdParty\glad\include;Code\ThirdParty\onetbb;Code\Include\Simulation;Code\Include\App;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>Code\thirdparty\onetbb;Code\thirdparty\glfw</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;tbb12.lib;tbb12_debug.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -122,16 +121,56 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>Code\ThirdParty;Code\ThirdParty\glfw\include;Code\ThirdParty\glad\include;Code\ThirdParty\onetbb;Code\Include\Simulation;Code\Include\App;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;tbb12.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>Code\thirdparty\onetbb;Code\thirdparty\glfw</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
-
-  <ItemGroup></ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Code\main.cpp" />
+    <ClCompile Include="Code\Source\App\OpenGLApp.cpp" />
+    <ClCompile Include="Code\Source\App\SceneParser.cpp" />
+    <ClCompile Include="Code\Source\App\Shader.cpp" />
+    <ClCompile Include="Code\Source\App\StateLoader.cpp" />
+    <ClCompile Include="Code\Source\App\StateWriter.cpp" />
+    <ClCompile Include="Code\Source\App\Timer.cpp" />
+    <ClCompile Include="Code\Source\Simulation\Interpolation.cpp" />
+    <ClCompile Include="Code\Source\Simulation\MatrixHelper.cpp" />
+    <ClCompile Include="Code\Source\Simulation\MPMScene.cpp" />
+    <ClCompile Include="Code\Source\Simulation\PICScene.cpp" />
+    <ClCompile Include="Code\Source\Simulation\PolyPICHelper.cpp" />
+    <ClCompile Include="Code\Source\Simulation\Simulation.cpp" />
+    <ClCompile Include="Code\Source\Simulation\SimulationScene.cpp" />
+    <ClCompile Include="Code\Source\Simulation\Solid.cpp" />
+    <ClCompile Include="Code\Source\Simulation\Spline.cpp" />
+    <ClCompile Include="Code\Source\Simulation\VolumeFraction.cpp" />
+    <ClCompile Include="Code\ThirdParty\glad\src\glad.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Code\Include\App\OpenGLApp.h" />
+    <ClInclude Include="Code\Include\App\SceneParser.h" />
+    <ClInclude Include="Code\Include\App\Shader.h" />
+    <ClInclude Include="Code\Include\App\StateLoader.h" />
+    <ClInclude Include="Code\Include\App\StateWriter.h" />
+    <ClInclude Include="Code\Include\App\Timer.h" />
+    <ClInclude Include="Code\Include\Simulation\Interpolation.h" />
+    <ClInclude Include="Code\Include\Simulation\MatrixHelper.h" />
+    <ClInclude Include="Code\Include\Simulation\MPMScene.h" />
+    <ClInclude Include="Code\Include\Simulation\PICScene.h" />
+    <ClInclude Include="Code\Include\Simulation\PolyPICHelper.h" />
+    <ClInclude Include="Code\Include\Simulation\Simulation.h" />
+    <ClInclude Include="Code\Include\Simulation\SimulationData.h" />
+    <ClInclude Include="Code\Include\Simulation\SimulationScene.h" />
+    <ClInclude Include="Code\Include\Simulation\Solid.h" />
+    <ClInclude Include="Code\Include\Simulation\Spline.h" />
+    <ClInclude Include="Code\Include\Simulation\VolumeFraction.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
